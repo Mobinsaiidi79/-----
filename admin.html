@@ -15,14 +15,12 @@
             transition: all 0.3s ease;
         }
         .sidebar-link:hover {
-            background-color: rgba(59, 130, 246, 0.1);
+            background-color: rgba(79, 70, 229, 0.1);
         }
         .active-tab {
-            background-color: #3b82f6;
+            background-color: #4f46e5;
             color: white;
         }
-        
-        /* استایل‌های ریسپانسیو */
         @media (max-width: 768px) {
             .flex {
                 flex-direction: column;
@@ -74,8 +72,6 @@
                 display: block;
             }
         }
-        
-        /* استایل‌های صفحه‌بندی */
         .pagination {
             display: flex;
             justify-content: center;
@@ -99,34 +95,43 @@
             background-color: #f3f4f6;
         }
         .page-item.active .page-link {
-            background-color: #3b82f6;
+            background-color: #4f46e5;
             color: white;
-            border-color: #3b82f6;
+            border-color: #4f46e5;
         }
         .page-item.disabled .page-link {
             color: #9ca3af;
             pointer-events: none;
         }
+        .primary-color {
+            background-color: #4f46e5;
+        }
+        .primary-color-light {
+            background-color: #6366f1;
+        }
+        .primary-color-dark {
+            background-color: #4338ca;
+        }
+        .text-primary {
+            color: #4f46e5;
+        }
+        .border-primary {
+            border-color: #4f46e5;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
-    <!-- ساختار اصلی پنل مدیریت -->
     <div class="flex h-screen">
-        <!-- دکمه منو برای موبایل -->
-        <button class="mobile-menu-button fixed top-4 right-4 z-50 bg-blue-600 text-white p-2 rounded-md md:hidden">
+        <button class="mobile-menu-button fixed top-4 right-4 z-50 primary-color text-white p-2 rounded-md md:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
-        
-        <!-- overlay برای موبایل -->
         <div class="overlay"></div>
-        
-        <!-- منوی کناری -->
-        <div class="w-64 bg-blue-800 text-white shadow-lg sidebar">
+        <div class="w-64 primary-color text-white shadow-lg sidebar">
             <div class="p-4 border-b border-blue-700 flex justify-between items-center">
                 <h2 class="text-xl font-bold flex items-center">
-                    <img src="../assets/images/logo-white.png" alt="لوگو" class="h-8 ml-2">
+                    <img src="assets/images/logo-white.png" alt="لوگو" class="h-8 ml-2">
                     پنل مدیریت
                 </h2>
                 <button class="close-sidebar md:hidden text-white">
@@ -170,6 +175,15 @@
                         </a>
                     </li>
                     <li>
+                        <a href="#" data-tab="settings" class="sidebar-link flex items-center p-3 rounded-lg">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            تنظیمات
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" data-tab="messages" class="sidebar-link flex items-center p-3 rounded-lg">
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
@@ -181,15 +195,13 @@
             </nav>
         </div>
 
-        <!-- محتوای اصلی -->
         <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- هدر -->
             <header class="bg-white shadow-sm">
                 <div class="flex justify-between items-center p-4">
                     <h1 id="page-title" class="text-xl font-bold text-gray-800">پیشخوان مدیریت</h1>
                     <div class="flex items-center space-x-4 space-x-reverse">
-                        <span class="text-sm text-gray-600 hidden-mobile">مدیر سیستم</span>
-                        <button id="admin-logout-btn" class="text-sm text-blue-600 hover:text-blue-800 transition">
+                        <span class="text-sm text-gray-600 hidden-mobile username">مدیر سیستم</span>
+                        <button id="admin-logout-btn" class="text-sm text-primary hover:text-primary-dark transition">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                             </svg>
@@ -197,10 +209,7 @@
                     </div>
                 </div>
             </header>
-
-            <!-- محتوای صفحه -->
             <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
-                <!-- بخش پیشخوان -->
                 <div id="dashboard-content" class="tab-content">
                     <div class="grid md:grid-cols-3 gap-6 mb-6">
                         <div class="bg-white p-6 rounded-lg shadow">
@@ -243,253 +252,124 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="bg-white p-6 rounded-lg shadow mb-6">
                         <h2 class="text-lg font-bold mb-4">آخرین فعالیت‌ها</h2>
                         <div class="space-y-4" id="recent-activities">
-                            <!-- فعالیت‌ها به صورت داینامیک اضافه می‌شوند -->
                             <p class="text-gray-500 text-center">هیچ فعالیتی ثبت نشده است</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- بخش اطلاعیه‌ها -->
                 <div id="announcements-content" class="tab-content hidden">
                     <div class="bg-white p-6 rounded-lg shadow mb-6">
                         <h2 class="text-lg font-bold mb-4">انتشار اطلاعیه جدید</h2>
                         <form id="announcement-form" class="space-y-4">
                             <div>
                                 <label for="announcement-title" class="block text-gray-700 mb-1">عنوان اطلاعیه</label>
-                                <input type="text" id="announcement-title" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                                <input type="text" id="announcement-title" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" required>
                             </div>
-                            
                             <div>
                                 <label for="announcement-content" class="block text-gray-700 mb-1">متن اطلاعیه</label>
-                                <textarea id="announcement-content" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                                <textarea id="announcement-content" rows="5" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" required></textarea>
                             </div>
-                            
-                            <div class="flex items-center">
-                                <input type="checkbox" id="announcement-pin" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
-                                <label for="announcement-pin" class="mr-2 text-sm text-gray-700">ثبت به عنوان اطلاعیه مهم (نمایش در صفحه اصلی)</label>
-                            </div>
-                            
-                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">انتشار اطلاعیه</button>
+                            <button type="submit" class="primary-color text-white px-6 py-2 rounded-lg hover:primary-color-dark transition">انتشار اطلاعیه</button>
                         </form>
                     </div>
-
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h2 class="text-lg font-bold mb-4">اطلاعیه‌های منتشر شده</h2>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عنوان</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">تاریخ انتشار</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200" id="announcements-list">
-                                    <!-- اطلاعیه‌ها به صورت داینامیک اضافه می‌شوند -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- صفحه‌بندی -->
-                        <div class="pagination mt-4">
-                            <ul class="flex">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">قبلی</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">بعدی</a>
-                                </li>
-                            </ul>
+                        <div id="announcements-list" class="space-y-4">
+                            <p class="text-gray-500 text-center">هیچ اطلاعیه‌ای منتشر نشده است</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- بخش کاربران -->
                 <div id="users-content" class="tab-content hidden">
                     <div class="bg-white p-6 rounded-lg shadow">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-lg font-bold">لیست کاربران</h2>
-                            <div class="relative">
-                                <input type="text" id="user-search" placeholder="جستجوی کاربر..." class="px-4 py-2 border rounded-lg pr-10">
-                                <svg class="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
+                        <h2 class="text-lg font-bold mb-4">مدیریت کاربران</h2>
+                        <div class="mb-4">
+                            <input type="text" id="user-search" placeholder="جستجوی کاربر..." class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
                         </div>
-                        
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">نام کاربر</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">ایمیل</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">تاریخ ثبت‌نام</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">تعداد مقالات</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
+                            <table class="w-full text-right">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="px-4 py-2">نام</th>
+                                        <th class="px-4 py-2">ایمیل</th>
+                                        <th class="px-4 py-2">وضعیت</th>
+                                        <th class="px-4 py-2">عملیات</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200" id="users-list">
-                                    <!-- کاربران به صورت داینامیک اضافه می‌شوند -->
+                                <tbody id="users-table" class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2 text-center" colspan="4">هیچ کاربری یافت نشد</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- صفحه‌بندی -->
-                        <div class="pagination mt-4">
-                            <ul class="flex">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">قبلی</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">بعدی</a>
-                                </li>
-                            </ul>
+                        <div class="pagination">
+                            <div class="page-item disabled"><span class="page-link">قبلی</span></div>
+                            <div class="page-item active"><span class="page-link">1</span></div>
+                            <div class="page-item"><a href="#" class="page-link">2</a></div>
+                            <div class="page-item"><a href="#" class="page-link">3</a></div>
+                            <div class="page-item"><a href="#" class="page-link">بعدی</a></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- بخش مقالات ارسالی -->
                 <div id="articles-content" class="tab-content hidden">
                     <div class="bg-white p-6 rounded-lg shadow">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-lg font-bold">مقالات ارسالی</h2>
-                            <div class="flex space-x-4 space-x-reverse">
-                                <select id="article-filter" class="px-4 py-2 border rounded-lg">
-                                    <option value="all">همه مقالات</option>
-                                    <option value="engineering">مهندسی</option>
-                                    <option value="humanities">علوم انسانی</option>
-                                    <option value="medical">پزشکی</option>
-                                    <option value="arts">هنر</option>
-                                </select>
-                                <div class="relative">
-                                    <input type="text" id="article-search" placeholder="جستجوی مقاله..." class="px-4 py-2 border rounded-lg pr-10">
-                                    <svg class="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                    </svg>
-                                </div>
-                            </div>
+                        <h2 class="text-lg font-bold mb-4">مدیریت مقالات</h2>
+                        <div class="mb-4">
+                            <input type="text" id="article-search" placeholder="جستجوی مقاله..." class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
                         </div>
-                        
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عنوان مقاله</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">نویسنده</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">حوزه</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">تاریخ ارسال</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
-                                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
+                            <table class="w-full text-right">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="px-4 py-2">عنوان مقاله</th>
+                                        <th class="px-4 py-2">نویسنده</th>
+                                        <th class="px-4 py-2">حوزه</th>
+                                        <th class="px-4 py-2">وضعیت</th>
+                                        <th class="px-4 py-2">عملیات</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200" id="articles-list">
-                                    <!-- مقالات به صورت داینامیک اضافه می‌شوند -->
+                                <tbody id="articles-table" class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2 text-center" colspan="5">هیچ مقاله‌ای یافت نشد</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- صفحه‌بندی -->
-                        <div class="pagination mt-4">
-                            <ul class="flex">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">قبلی</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">بعدی</a>
-                                </li>
-                            </ul>
+                        <div class="pagination">
+                            <div class="page-item disabled"><span class="page-link">قبلی</span></div>
+                            <div class="page-item active"><span class="page-link">1</span></div>
+                            <div class="page-item"><a href="#" class="page-link">2</a></div>
+                            <div class="page-item"><a href="#" class="page-link">3</a></div>
+                            <div class="page-item"><a href="#" class="page-link">بعدی</a></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- بخش پیام‌های کاربران -->
+                <div id="settings-content" class="tab-content hidden">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h2 class="text-lg font-bold mb-4">تنظیمات جشنواره</h2>
+                        <form id="settings-form" class="space-y-4">
+                            <div>
+                                <label for="festival-deadline" class="block text-gray-700 mb-1">مهلت ارسال مقاله</label>
+                                <input type="date" id="festival-deadline" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="submission-fee" class="block text-gray-700 mb-1">هزینه ثبت‌نام (ریال)</label>
+                                <input type="number" id="submission-fee" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                            </div>
+                            <button type="submit" class="primary-color text-white px-6 py-2 rounded-lg hover:primary-color-dark transition">ذخیره تنظیمات</button>
+                        </form>
+                    </div>
+                </div>
                 <div id="messages-content" class="tab-content hidden">
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h2 class="text-lg font-bold mb-4">پیام‌های کاربران</h2>
-                        
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <!-- لیست پیام‌ها -->
-                            <div class="md:col-span-1 border-r border-gray-200 pr-4">
-                                <div class="relative mb-4">
-                                    <input type="text" id="message-search" placeholder="جستجوی پیام..." class="w-full px-4 py-2 border rounded-lg pr-10">
-                                    <svg class="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                    </svg>
-                                </div>
-                                
-                                <div class="space-y-2 overflow-y-auto max-h-[calc(100vh-250px)]" id="messages-sidebar">
-                                    <!-- پیام‌ها به صورت داینامیک اضافه می‌شوند -->
-                                </div>
-                            </div>
-                            
-                            <!-- محتوای پیام و پاسخ -->
-                            <div class="md:col-span-2">
-                                <div class="bg-gray-50 p-4 rounded-lg mb-4 hidden" id="message-detail">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <div>
-                                            <h3 class="font-bold" id="message-subject">موضوع پیام</h3>
-                                            <p class="text-sm text-gray-500">
-                                                از: <span id="message-sender">نام فرستنده</span> - 
-                                                <span id="message-date">تاریخ</span>
-                                            </p>
-                                        </div>
-                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800" id="message-status">خوانده نشده</span>
-                                    </div>
-                                    
-                                    <div class="bg-white p-4 rounded mb-4">
-                                        <p id="message-content">متن پیام...</p>
-                                    </div>
-                                    
-                                    <form id="reply-form" class="space-y-4">
-                                        <input type="hidden" id="message-id">
-                                        <div>
-                                            <label for="reply-content" class="block text-gray-700 mb-1">پاسخ شما</label>
-                                            <textarea id="reply-content" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
-                                        </div>
-                                        
-                                        <div class="flex justify-end">
-                                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">ارسال پاسخ</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                
-                                <div id="no-message-selected" class="text-center py-12 text-gray-500">
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                                    </svg>
-                                    <h3 class="mt-2 text-sm font-medium">پیامی انتخاب نشده است</h3>
-                                    <p class="mt-1 text-sm">برای مشاهده جزئیات و پاسخ، یک پیام را از لیست انتخاب کنید</p>
-                                </div>
-                            </div>
+                        <div class="mb-4">
+                            <input type="text" id="message-search" placeholder="جستجوی پیام..." class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+                        <div class="space-y-4" id="messages-list">
+                            <p class="text-gray-500 text-center">هیچ پیامی یافت نشد</p>
                         </div>
                     </div>
                 </div>
@@ -497,110 +377,24 @@
         </div>
     </div>
 
-    <!-- اسکریپت‌ها -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="scripts/auth.js"></script>
     <script>
-        // داده‌های نمونه
-        const sampleUsers = [
-            { id: 1, name: "مبین سعیدی", email: "mobin@example.com", registerDate: "1402/05/15", articleCount: 2 },
-            { id: 2, name: "رویا کرمی", email: "roya@example.com", registerDate: "1402/06/02", articleCount: 1 },
-            { id: 3, name: "محمد حسینی", email: "mohammad@example.com", registerDate: "1402/06/20", articleCount: 0 }
-        ];
-
-        const sampleArticles = [
-            { id: 1, title: "بررسی روش‌های نوین در مهندسی نرم‌افزار", author: "مبین سعیدی", field: "engineering", submitDate: "1402/06/10", status: "در حال بررسی", fileUrl: "sample-article-1.pdf" },
-            { id: 2, title: "تأثیر ادبیات معاصر بر جامعه", author: "رویا کرمی", field: "humanities", submitDate: "1402/06/15", status: "تایید شده", fileUrl: "sample-article-2.pdf" },
-            { id: 3, title: "روش‌های جدید در درمان بیماری‌های قلبی", author: "علیرضا محمدی", field: "medical", submitDate: "1402/06/18", status: "رد شده", fileUrl: "sample-article-3.pdf" }
-        ];
-
-        const sampleMessages = [
-            { id: 1, subject: "سوال درباره مهلت ارسال", sender: "رویا کرمی", date: "1402/06/12", content: "با سلام، آیا امکان تمدید مهلت ارسال مقاله وجود دارد؟", status: "unread" },
-            { id: 2, subject: "مشکل در آپلود فایل", sender: "محمد حسینی", date: "1402/06/08", content: "سلام، هنگام آپلود فایل مقاله با خطا مواجه می‌شوم. لطفاً راهنمایی کنید.", status: "read" },
-            { id: 3, subject: "درخواست همکاری", sender: "مبین سعید", date: "1402/05/30", content: "با عرض سلام، آیا امکان همکاری با جشنواره به عنوان داور وجود دارد؟", status: "read" }
-        ];
-
         document.addEventListener('DOMContentLoaded', function() {
-            // بررسی وضعیت ادمین
-            const user = JSON.parse(localStorage.getItem('user')) || {};
-            if(!user.isAdmin) {
-                window.location.href = '../index.html';
+            const user = getUser();
+            if (!user || !user.isLoggedIn || !user.isAdmin) {
+                Swal.fire({
+                    title: 'دسترسی غیرمجاز',
+                    text: 'شما اجازه دسترسی به این صفحه را ندارید.',
+                    icon: 'error'
+                }).then(() => {
+                    window.location.href = 'index.html';
+                });
+                return;
             }
 
-            // مدیریت منوی موبایل
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.overlay');
-            const closeSidebar = document.querySelector('.close-sidebar');
+            document.querySelector('.username').textContent = user.name;
 
-            mobileMenuButton.addEventListener('click', function() {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-            });
-
-            closeSidebar.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-
-            overlay.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-
-            // مدیریت تب‌ها
-            const tabLinks = document.querySelectorAll('[data-tab]');
-            tabLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const tabName = this.getAttribute('data-tab');
-                    
-                    // بستن منوی موبایل در صورت باز بودن
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                    
-                    // تغییر استایل تب‌های منو
-                    tabLinks.forEach(tab => {
-                        if(tab === this) {
-                            tab.classList.add('active-tab');
-                        } else {
-                            tab.classList.remove('active-tab');
-                        }
-                    });
-                    
-                    // تغییر محتوا
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.add('hidden');
-                    });
-                    document.getElementById(`${tabName}-content`).classList.remove('hidden');
-                    
-                    // تغییر عنوان صفحه
-                    document.getElementById('page-title').textContent = this.textContent.trim();
-                    
-                    // بارگذاری داده‌های مربوطه
-                    switch(tabName) {
-                        case 'dashboard':
-                            loadDashboard();
-                            break;
-                        case 'announcements':
-                            loadAnnouncements();
-                            break;
-                        case 'users':
-                            loadUsers();
-                            break;
-                        case 'articles':
-                            loadArticles();
-                            break;
-                        case 'messages':
-                            loadMessages();
-                            break;
-                    }
-                });
-            });
-
-            // فعال کردن تب پیشخوان به صورت پیش‌فرض
-            document.querySelector('[data-tab="dashboard"]').click();
-
-            // مدیریت دکمه خروج
             document.getElementById('admin-logout-btn').addEventListener('click', function() {
                 Swal.fire({
                     title: 'آیا مطمئن هستید؟',
@@ -611,585 +405,97 @@
                     cancelButtonText: 'انصراف'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        localStorage.removeItem('user');
-                        window.location.href = '../index.html';
+                        logoutUser();
+                        window.location.href = 'index.html';
                     }
                 });
             });
 
-            // مدیریت فرم انتشار اطلاعیه
-            document.getElementById('announcement-form')?.addEventListener('submit', function(e) {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tab = this.getAttribute('data-tab');
+                    sidebarLinks.forEach(l => l.classList.remove('active-tab'));
+                    this.classList.add('active-tab');
+                    tabContents.forEach(content => content.classList.add('hidden'));
+                    document.getElementById(`${tab}-content`).classList.remove('hidden');
+                    document.getElementById('page-title').textContent = this.textContent.trim();
+                    document.querySelector('.sidebar').classList.remove('active');
+                    document.querySelector('.overlay').classList.remove('active');
+                });
+            });
+
+            document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.add('active');
+                document.querySelector('.overlay').classList.add('active');
+            });
+
+            document.querySelector('.close-sidebar').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.remove('active');
+                document.querySelector('.overlay').classList.remove('active');
+            });
+
+            document.querySelector('.overlay').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            document.getElementById('announcement-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                
                 const title = document.getElementById('announcement-title').value;
                 const content = document.getElementById('announcement-content').value;
-                const isPinned = document.getElementById('announcement-pin').checked;
-                
-                if(!title || !content) {
-                    Swal.fire({
-                        title: 'خطا',
-                        text: 'لطفاً عنوان و متن اطلاعیه را وارد کنید',
-                        icon: 'error'
-                    });
-                    return;
-                }
-                
-                // در حالت واقعی اینجا اطلاعیه به سرور ارسال می‌شود
-                const announcement = {
-                    id: Date.now(),
-                    title: title,
-                    content: content,
-                    date: new Date().toLocaleDateString('fa-IR'),
-                    isPinned: isPinned,
-                    isActive: true
-                };
-                
-                // ذخیره در localStorage (در حالت واقعی باید در دیتابیس ذخیره شود)
-                let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-                announcements.unshift(announcement);
-                localStorage.setItem('announcements', JSON.stringify(announcements));
-                
-                // ثبت فعالیت
-                addActivity(`اطلاعیه جدید "${title}" منتشر شد`, 'announcement');
-                
                 Swal.fire({
-                    title: 'موفقیت',
-                    text: 'اطلاعیه با موفقیت منتشر شد',
+                    title: 'اطلاعیه منتشر شد',
+                    text: 'اطلاعیه با موفقیت در سایت منتشر شد.',
                     icon: 'success'
                 }).then(() => {
+                    const announcementList = document.getElementById('announcements-list');
+                    const announcementDiv = document.createElement('div');
+                    announcementDiv.className = 'p-4 bg-gray-50 rounded-lg';
+                    announcementDiv.innerHTML = `
+                        <h3 class="font-bold">${title}</h3>
+                        <p class="text-gray-600">${content}</p>
+                        <button class="text-red-600 hover:text-red-800 mt-2">حذف</button>
+                    `;
+                    announcementList.innerHTML = '';
+                    announcementList.appendChild(announcementDiv);
                     this.reset();
-                    loadAnnouncements();
-                    loadDashboard();
                 });
             });
 
-            // مدیریت فرم پاسخ به پیام
-            document.getElementById('reply-form')?.addEventListener('submit', function(e) {
+            document.getElementById('settings-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const messageId = document.getElementById('message-id').value;
-                const replyContent = document.getElementById('reply-content').value;
-                
-                if(!replyContent) {
-                    Swal.fire({
-                        title: 'خطا',
-                        text: 'لطفاً متن پاسخ را وارد کنید',
-                        icon: 'error'
-                    });
-                    return;
-                }
-                
-                // در حالت واقعی اینجا پاسخ به سرور ارسال می‌شود
                 Swal.fire({
-                    title: 'پاسخ ارسال شد',
-                    text: 'پاسخ شما با موفقیت ارسال شد',
+                    title: 'تنظیمات ذخیره شد',
+                    text: 'تغییرات با موفقیت اعمال شد.',
                     icon: 'success'
-                }).then(() => {
-                    // تغییر وضعیت پیام به پاسخ داده شده
-                    const messages = JSON.parse(localStorage.getItem('messages')) || sampleMessages;
-                    const messageIndex = messages.findIndex(m => m.id == messageId);
-                    if(messageIndex !== -1) {
-                        messages[messageIndex].status = 'replied';
-                        localStorage.setItem('messages', JSON.stringify(messages));
-                    }
-                    
-                    // ثبت فعالیت
-                    addActivity(`پاسخ به پیام "${document.getElementById('message-subject').textContent}" ارسال شد`, 'message');
-                    
-                    // بارگذاری مجدد لیست پیام‌ها
-                    loadMessages();
-                    loadDashboard();
-                    
-                    // پاک کردن فرم
-                    this.reset();
                 });
             });
 
-            // جستجوی کاربران
-            document.getElementById('user-search')?.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const rows = document.querySelectorAll('#users-list tr');
-                
-                rows.forEach(row => {
-                    const userName = row.querySelector('td:first-child').textContent.toLowerCase();
-                    const userEmail = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                    
-                    if(userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
-
-            // فیلتر و جستجوی مقالات
-            document.getElementById('article-filter')?.addEventListener('change', filterArticles);
-            document.getElementById('article-search')?.addEventListener('input', filterArticles);
-            
-            function filterArticles() {
-                const filterValue = document.getElementById('article-filter').value;
-                const searchTerm = document.getElementById('article-search').value.toLowerCase();
-                const rows = document.querySelectorAll('#articles-list tr');
-                
-                rows.forEach(row => {
-                    const articleField = row.querySelector('td:nth-child(3)').textContent;
-                    const articleTitle = row.querySelector('td:first-child').textContent.toLowerCase();
-                    const articleAuthor = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                    
-                    const fieldMatch = filterValue === 'all' || getFieldName(filterValue) === articleField;
-                    const searchMatch = articleTitle.includes(searchTerm) || articleAuthor.includes(searchTerm);
-                    
-                    if(fieldMatch && searchMatch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            }
-
-            // جستجوی پیام‌ها
-            document.getElementById('message-search')?.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const messages = document.querySelectorAll('#messages-sidebar > div');
-                
-                messages.forEach(message => {
-                    const subject = message.querySelector('h3').textContent.toLowerCase();
-                    const content = message.querySelector('p').textContent.toLowerCase();
-                    const sender = message.querySelector('span:first-child').textContent.toLowerCase();
-                    
-                    if(subject.includes(searchTerm) || content.includes(searchTerm) || sender.includes(searchTerm)) {
-                        message.style.display = '';
-                    } else {
-                        message.style.display = 'none';
-                    }
-                });
-            });
-
-            // بارگذاری داده‌های پیشخوان
-            function loadDashboard() {
-                document.getElementById('users-count').textContent = sampleUsers.length;
-                document.getElementById('articles-count').textContent = sampleArticles.length;
-                document.getElementById('messages-count').textContent = sampleMessages.filter(m => m.status === 'unread').length;
-                
-                loadActivities();
-            }
-
-            // بارگذاری فعالیت‌ها
-            function loadActivities() {
-                const activities = JSON.parse(localStorage.getItem('activities')) || [];
+            function updateStats() {
+                document.getElementById('users-count').textContent = '150';
+                document.getElementById('articles-count').textContent = '85';
+                document.getElementById('messages-count').textContent = '12';
+                const activities = [
+                    'کاربر جدید ثبت‌نام کرد: علی محمدی',
+                    'مقاله جدید ارسال شد: تحلیل داده‌های بزرگ',
+                    'پیام جدید از کاربر: سارا احمدی'
+                ];
                 const activitiesContainer = document.getElementById('recent-activities');
-                
                 activitiesContainer.innerHTML = '';
-                
-                if(activities.length === 0) {
-                    activitiesContainer.innerHTML = '<p class="text-gray-500 text-center">هیچ فعالیتی ثبت نشده است</p>';
-                    return;
-                }
-                
-                activities.slice(0, 5).forEach(activity => {
-                    const activityEl = document.createElement('div');
-                    activityEl.className = 'flex items-start border-b border-gray-100 pb-3';
-                    activityEl.innerHTML = `
-                        <div class="p-2 rounded-full bg-gray-100 text-gray-600 mr-3">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-sm">${activity.text}</p>
-                            <p class="text-xs text-gray-500 mt-1">${activity.date}</p>
-                        </div>
-                    `;
-                    activitiesContainer.appendChild(activityEl);
+                activities.forEach(activity => {
+                    const p = document.createElement('p');
+                    p.className = 'text-gray-700';
+                    p.textContent = activity;
+                    activitiesContainer.appendChild(p);
                 });
             }
 
-            // ثبت فعالیت جدید
-            function addActivity(text, type) {
-                const activities = JSON.parse(localStorage.getItem('activities')) || [];
-                const icon = {
-                    'announcement': '📢',
-                    'message': '✉️',
-                    'user': '👤',
-                    'article': '📄'
-                }[type] || 'ℹ️';
-                
-                activities.unshift({
-                    text: `${icon} ${text}`,
-                    date: new Date().toLocaleString('fa-IR'),
-                    type: type
-                });
-                
-                localStorage.setItem('activities', JSON.stringify(activities));
-            }
-
-            // بارگذاری اطلاعیه‌ها
-            function loadAnnouncements() {
-                const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-                const announcementsList = document.getElementById('announcements-list');
-                
-                announcementsList.innerHTML = '';
-                
-                if(announcements.length === 0) {
-                    announcementsList.innerHTML = `
-                        <tr>
-                            <td colspan="4" class="px-6 py-4 text-center text-gray-500">هیچ اطلاعیه‌ای منتشر نشده است</td>
-                        </tr>
-                    `;
-                    return;
-                }
-                
-                announcements.forEach(announcement => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="font-medium text-gray-900">${announcement.title}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">${announcement.date}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${announcement.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">
-                                ${announcement.isActive ? 'فعال' : 'غیرفعال'}
-                            </span>
-                            ${announcement.isPinned ? '<span class="mr-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">مهم</span>' : ''}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <button onclick="toggleAnnouncement(${announcement.id})" class="text-blue-600 hover:text-blue-900 mr-3">
-                                ${announcement.isActive ? 'غیرفعال کردن' : 'فعال کردن'}
-                            </button>
-                            <button onclick="deleteAnnouncement(${announcement.id})" class="text-red-600 hover:text-red-900">
-                                حذف
-                            </button>
-                        </td>
-                    `;
-                    announcementsList.appendChild(row);
-                });
-            }
-
-            // بارگذاری کاربران
-            function loadUsers() {
-                const usersList = document.getElementById('users-list');
-                usersList.innerHTML = '';
-                
-                sampleUsers.forEach(user => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                    <span class="text-blue-600">${user.name.charAt(0)}</span>
-                                </div>
-                                <div class="mr-4">
-                                    <div class="font-medium text-gray-900">${user.name}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">${user.email}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-500 hidden md:table-cell">${user.registerDate}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-500 hidden md:table-cell">${user.articleCount}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <button onclick="viewUserDetails(${user.id})" class="text-blue-600 hover:text-blue-900 mr-3">مشاهده</button>
-                            <button onclick="sendMessageToUser('${user.email}')" class="text-green-600 hover:text-green-900">ارسال پیام</button>
-                        </td>
-                    `;
-                    usersList.appendChild(row);
-                });
-            }
-
-            // بارگذاری مقالات
-            function loadArticles() {
-                const articlesList = document.getElementById('articles-list');
-                articlesList.innerHTML = '';
-                
-                sampleArticles.forEach(article => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="px-6 py-4">
-                            <div class="font-medium text-gray-900">${article.title}</div>
-                        </td>
-                        <td class="px-6 py-4 text-gray-500">${article.author}</td>
-                        <td class="px-6 py-4 text-gray-500 hidden md:table-cell">${getFieldName(article.field)}</td>
-                        <td class="px-6 py-4 text-gray-500 hidden md:table-cell">${article.submitDate}</td>
-                        <td class="px-6 py-4">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClass(article.status)}">
-                                ${article.status}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 text-right text-sm font-medium">
-                            <button onclick="viewArticle(${article.id})" class="text-blue-600 hover:text-blue-900 mr-3">مشاهده</button>
-                            <button onclick="downloadArticle(${article.id})" class="text-green-600 hover:text-green-900">دانلود</button>
-                        </td>
-                    `;
-                    articlesList.appendChild(row);
-                });
-            }
-
-            // بارگذاری پیام‌ها
-            function loadMessages() {
-                const messages = JSON.parse(localStorage.getItem('messages')) || sampleMessages;
-                const messagesSidebar = document.getElementById('messages-sidebar');
-                messagesSidebar.innerHTML = '';
-                
-                messages.forEach(message => {
-                    const messageEl = document.createElement('div');
-                    messageEl.className = `p-3 rounded-lg cursor-pointer ${message.status === 'unread' ? 'bg-blue-50' : 'bg-white'} border ${message.status === 'unread' ? 'border-blue-200' : 'border-gray-200'}`;
-                    messageEl.innerHTML = `
-                        <h3 class="font-medium ${message.status === 'unread' ? 'text-blue-800' : 'text-gray-800'}">${message.subject}</h3>
-                        <p class="text-sm text-gray-500 truncate">${message.content}</p>
-                        <div class="flex justify-between items-center mt-2">
-                            <span class="text-xs ${message.status === 'unread' ? 'text-blue-600' : 'text-gray-500'}">${message.sender}</span>
-                            <span class="text-xs text-gray-400">${message.date}</span>
-                        </div>
-                    `;
-                    messageEl.addEventListener('click', function() {
-                        showMessageDetails(message);
-                    });
-                    messagesSidebar.appendChild(messageEl);
-                });
-            }
-
-            // نمایش جزئیات پیام
-            function showMessageDetails(message) {
-                document.getElementById('message-detail').classList.remove('hidden');
-                document.getElementById('no-message-selected').classList.add('hidden');
-                
-                document.getElementById('message-subject').textContent = message.subject;
-                document.getElementById('message-sender').textContent = message.sender;
-                document.getElementById('message-date').textContent = message.date;
-                document.getElementById('message-content').textContent = message.content;
-                document.getElementById('message-id').value = message.id;
-                
-                const statusEl = document.getElementById('message-status');
-                statusEl.textContent = message.status === 'unread' ? 'خوانده نشده' : 
-                                      message.status === 'replied' ? 'پاسخ داده شده' : 'خوانده شده';
-                
-                statusEl.className = `px-2 py-1 text-xs rounded-full ${
-                    message.status === 'unread' ? 'bg-yellow-100 text-yellow-800' : 
-                    message.status === 'replied' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                }`;
-                
-                // تغییر وضعیت به خوانده شده
-                if(message.status === 'unread') {
-                    const messages = JSON.parse(localStorage.getItem('messages')) || sampleMessages;
-                    const messageIndex = messages.findIndex(m => m.id === message.id);
-                    if(messageIndex !== -1) {
-                        messages[messageIndex].status = 'read';
-                        localStorage.setItem('messages', JSON.stringify(messages));
-                        loadMessages();
-                        loadDashboard();
-                    }
-                }
-            }
-
-            // تبدیل کد حوزه به نام فارسی
-            function getFieldName(fieldCode) {
-                const fields = {
-                    'engineering': 'مهندسی',
-                    'humanities': 'علوم انسانی',
-                    'medical': 'پزشکی',
-                    'arts': 'هنر'
-                };
-                return fields[fieldCode] || fieldCode;
-            }
-
-            // کلاس وضعیت مقاله
-            function getStatusClass(status) {
-                const statusClasses = {
-                    'در حال بررسی': 'bg-yellow-100 text-yellow-800',
-                    'تایید شده': 'bg-green-100 text-green-800',
-                    'رد شده': 'bg-red-100 text-red-800'
-                };
-                return statusClasses[status] || 'bg-gray-100 text-gray-800';
-            }
+            updateStats();
         });
-
-        // توابع سراسری برای مدیریت اطلاعیه‌ها
-        function toggleAnnouncement(id) {
-            let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-            const index = announcements.findIndex(a => a.id === id);
-            
-            if(index !== -1) {
-                announcements[index].isActive = !announcements[index].isActive;
-                localStorage.setItem('announcements', JSON.stringify(announcements));
-                
-                // ثبت فعالیت
-                const action = announcements[index].isActive ? 'فعال' : 'غیرفعال';
-                addActivity(`اطلاعیه "${announcements[index].title}" ${action} شد`, 'announcement');
-                
-                document.querySelector('#announcements-list').innerHTML = '';
-                document.dispatchEvent(new Event('DOMContentLoaded'));
-                loadDashboard();
-            }
-        }
-        
-        function deleteAnnouncement(id) {
-            Swal.fire({
-                title: 'آیا مطمئن هستید؟',
-                text: 'این اطلاعیه حذف خواهد شد',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'بله، حذف شود',
-                cancelButtonText: 'انصراف'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-                    const deletedAnnouncement = announcements.find(a => a.id === id);
-                    announcements = announcements.filter(a => a.id !== id);
-                    localStorage.setItem('announcements', JSON.stringify(announcements));
-                    
-                    // ثبت فعالیت
-                    if(deletedAnnouncement) {
-                        addActivity(`اطلاعیه "${deletedAnnouncement.title}" حذف شد`, 'announcement');
-                    }
-                    
-                    document.querySelector('#announcements-list').innerHTML = '';
-                    document.dispatchEvent(new Event('DOMContentLoaded'));
-                    loadDashboard();
-                }
-            });
-        }
-
-        // توابع سراسری دیگر
-        function viewUserDetails(userId) {
-            const user = sampleUsers.find(u => u.id === userId);
-            if(user) {
-                Swal.fire({
-                    title: user.name,
-                    html: `
-                        <div class="text-right mt-4 space-y-2">
-                            <p><strong>ایمیل:</strong> ${user.email}</p>
-                            <p><strong>تاریخ ثبت‌نام:</strong> ${user.registerDate}</p>
-                            <p><strong>تعداد مقالات:</strong> ${user.articleCount}</p>
-                        </div>
-                    `,
-                    icon: 'info'
-                });
-            }
-        }
-
-        function sendMessageToUser(email) {
-            Swal.fire({
-                title: 'ارسال پیام به کاربر',
-                html: `
-                    <div class="text-right space-y-4">
-                        <div>
-                            <label class="block text-gray-700 mb-1">گیرنده</label>
-                            <input type="text" value="${email}" class="w-full px-4 py-2 border rounded-lg" disabled>
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-1">موضوع</label>
-                            <input type="text" id="swal-message-subject" class="w-full px-4 py-2 border rounded-lg">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-1">متن پیام</label>
-                            <textarea id="swal-message-content" rows="4" class="w-full px-4 py-2 border rounded-lg"></textarea>
-                        </div>
-                    </div>
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'ارسال',
-                cancelButtonText: 'انصراف',
-                preConfirm: () => {
-                    const subject = document.getElementById('swal-message-subject').value;
-                    const content = document.getElementById('swal-message-content').value;
-                    
-                    if(!subject || !content) {
-                        Swal.showValidationMessage('لطفاً موضوع و متن پیام را وارد کنید');
-                        return false;
-                    }
-                    
-                    return { subject, content, email };
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // در حالت واقعی اینجا پیام به سرور ارسال می‌شود
-                    Swal.fire({
-                        title: 'پیام ارسال شد',
-                        text: `پیام شما به ${email} ارسال شد`,
-                        icon: 'success'
-                    });
-                    
-                    // ثبت فعالیت
-                    addActivity(`پیام به کاربر ${email} ارسال شد`, 'message');
-                    loadDashboard();
-                }
-            });
-        }
-
-        function viewArticle(articleId) {
-            const article = sampleArticles.find(a => a.id === articleId);
-            if(article) {
-                Swal.fire({
-                    title: article.title,
-                    html: `
-                        <div class="text-right mt-4 space-y-2">
-                            <p><strong>نویسنده:</strong> ${article.author}</p>
-                            <p><strong>حوزه:</strong> ${getFieldName(article.field)}</p>
-                            <p><strong>تاریخ ارسال:</strong> ${article.submitDate}</p>
-                            <p><strong>وضعیت:</strong> <span class="${getStatusClass(article.status)} px-2 py-1 rounded-full text-xs">${article.status}</span></p>
-                            <hr class="my-3">
-                            <p class="text-gray-700">در این بخش می‌توانید فایل مقاله را مشاهده و بررسی کنید.</p>
-                        </div>
-                    `,
-                    icon: 'info',
-                    showCancelButton: true,
-                    confirmButtonText: 'تایید مقاله',
-                    cancelButtonText: 'رد مقاله',
-                    showDenyButton: true,
-                    denyButtonText: 'دانلود مقاله'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // تایید مقاله
-                        Swal.fire('مقاله تایید شد', 'این مقاله برای مرحله بعدی انتخاب شد.', 'success');
-                        addActivity(`مقاله "${article.title}" تایید شد`, 'article');
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        // رد مقاله
-                        Swal.fire('مقاله رد شد', 'این مقاله رد شد و به نویسنده اطلاع داده خواهد شد.', 'info');
-                        addActivity(`مقاله "${article.title}" رد شد`, 'article');
-                    } else if (result.isDenied) {
-                        // دانلود مقاله
-                        downloadArticle(articleId);
-                    }
-                    loadDashboard();
-                });
-            }
-        }
-
-        function downloadArticle(articleId) {
-            const article = sampleArticles.find(a => a.id === articleId);
-            if(article) {
-                // ایجاد لینک دانلود
-                const link = document.createElement('a');
-                link.href = article.fileUrl || '#';
-                link.download = `مقاله-${article.title}.pdf`;
-                link.target = '_blank';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                Swal.fire('دانلود شروع شد', `فایل مقاله "${article.title}" در حال دانلود است...`, 'info');
-                addActivity(`مقاله "${article.title}" دانلود شد`, 'article');
-                loadDashboard();
-            }
-        }
-
-        // ثبت فعالیت جدید
-        function addActivity(text, type) {
-            const activities = JSON.parse(localStorage.getItem('activities')) || [];
-            const icon = {
-                'announcement': '📢',
-                'message': '✉️',
-                'user': '👤',
-                'article': '📄'
-            }[type] || 'ℹ️';
-            
-            activities.unshift({
-                text: `${icon} ${text}`,
-                date: new Date().toLocaleString('fa-IR'),
-                type: type
-            });
-            
-            localStorage.setItem('activities', JSON.stringify(activities));
-        }
     </script>
 </body>
 </html>
